@@ -11,6 +11,7 @@ new Vue({
             this.gameIsRunning = true;
             this.playerHealth = 100;
             this.monsterHealth = 100;
+            this.turns = [];
 
         },
         attack: function() {
@@ -18,21 +19,25 @@ new Vue({
             this.monsterHealth -= damage;
             this.turns.unshift({
                 isPlayer: true,
-                text: 'You hit Monster for ' + damage
-
+                text: 'You hit Demogorgon for ' + damage
             });
             if (this.checkWin() ) {
                 return;
             }
-            
-            this.monsterAttacks();    
+
+            this.monsterAttacks();
         },
         specialAttack: function () {
-           this.monsterHealth -= this.calculateDamage(10, 20);
+          var damage = this.calculateDamage(10, 20);
+           this.monsterHealth -= damage;
+           this.turns.unshift({
+               isPlayer: true,
+               text: 'You hit Demogorgon hard for ' + damage
+           });
             if (this.checkWin() ) {
-                return; 
+                return;
         }
-            this.monsterAttacks(); 
+            this.monsterAttacks();
 
         },
         heal: function() {
@@ -40,7 +45,11 @@ new Vue({
                 this.playerHealth += 10;
         } else {
                 this.playerHealth = 100;
-        }           
+        }
+        this.turns.unshift({
+            isPlayer: true,
+            text: 'You heal 10 hit points'
+        });
             this.monsterAttacks();
         },
         giveUp: function () {
@@ -52,9 +61,9 @@ new Vue({
             this.checkWin();
             this.turns.unshift({
                 isPlayer: false,
-                text: 'Monster hits you for ' + damage
+                text: 'Demogorgon hits you for ' + damage
 
-            });   
+            });
         },
         calculateDamage: function (min, max) {
             return Math.max(Math.floor(Math.random() * max) + 1, min);
