@@ -32,7 +32,7 @@ new Vue({
            this.monsterHealth -= damage;
            this.turns.unshift({
                isPlayer: true,
-               text: 'You hit Demogorgon hard for ' + damage
+               text: 'You hit Demogorgon in the nuts for ' + damage
            });
             if (this.checkWin() ) {
                 return;

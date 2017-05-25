@@ -54,11 +54,11 @@ button {
 }
 
 #start-game {
-    background-color: #aaffb0;
+    background-color: orange;
 }
 
 #start-game:hover {
-    background-color: #76ff7e;
+    background-color: orangered;
 }
 
 #attack {
@@ -70,11 +70,11 @@ button {
 }
 
 #special-attack {
-    background-color: #ffaf4f;
+    background-color: pink;
 }
 
 #special-attack:hover {
-    background-color: #ff9a2b;
+    background-color: hotpink;
 }
 
 #heal {
